@@ -102,10 +102,16 @@ Make Millions"). Corrigido nesta sessão:
 
 ### Deploy (2026-09-03)
 - Publicado na Vercel via CLI (conta `fabinhohenriquekarolus-coder`), projeto
-  `karolus/extracted`. URL de produção atual:
-  `https://extracted-henna-eta.vercel.app`. Deploy manual por enquanto (sem
-  Git conectado) — pra subir uma mudança nova, rodar `npx vercel --prod
-  --yes` na raiz do projeto.
+  `karolus/extracted`. URLs de produção: `https://extracted-henna-eta.vercel.app`
+  e domínio próprio `https://45min.ladegroup.com.br` (CNAME configurado na
+  Hostinger, ambos com "Valid Configuration" no painel da Vercel).
+- Código versionado no GitHub:
+  `https://github.com/fabinhohenriquekarolus-coder/45min---landing`
+  (repositório público — sem problema, o código não expõe nenhum segredo
+  real; checkout e Pixel ID já são públicos no HTML do site). Projeto da
+  Vercel conectado a esse repositório via `vercel git connect` — **todo
+  push na branch `main` dispara deploy automático em produção**, não
+  precisa mais rodar `vercel --prod` manualmente.
 - `fbq('track', 'PageView')` movido pro `<head>` (`src/routes/__root.tsx`),
   igual ao snippet oficial do Meta Pixel — antes disparava só via
   `useEffect` em `index.tsx`. A chamada duplicada em `index.tsx` foi
