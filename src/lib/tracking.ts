@@ -1,3 +1,6 @@
+// Domínio de produção — usado pra montar URLs absolutas (og:image etc.).
+export const SITE_URL = "https://45min.ladegroup.com.br";
+
 // Destino único de conversão.
 export const CHECKOUT_URL = "https://pay.hotmart.com/B107451355O";
 

@@ -20,7 +20,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { AnimatedBackground } from "@/components/landing/AnimatedBackground";
-import { goToCheckout, track } from "@/lib/tracking";
+import { goToCheckout, track, SITE_URL } from "@/lib/tracking";
 import heroMockup from "@/assets/hero-mockup.webp";
 import ogImage from "@/assets/og-image.webp";
 
@@ -41,11 +41,12 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "pt_BR" },
-      { property: "og:image", content: ogImage },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:image", content: `${SITE_URL}${ogImage}` },
       { property: "og:image:width", content: "1024" },
       { property: "og:image:height", content: "1024" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: ogImage },
+      { name: "twitter:image", content: `${SITE_URL}${ogImage}` },
     ],
   }),
   component: Landing,
