@@ -1,0 +1,1 @@
+Veja `AGENTS.md` na raiz deste projeto — ele tem todo o contexto (produto, decisões de CRO já validadas, regras que não podem ser quebradas, pendências e mapa de arquivos). Leia-o antes de propor qualquer mudança na landing page.
