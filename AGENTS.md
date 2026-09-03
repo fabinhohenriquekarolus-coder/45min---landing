@@ -20,6 +20,30 @@ criativo original está em `README.md` — o que segue é o que mudou e foi
 decidido DEPOIS desse brief, numa sessão de revisão/CRO. Leia isto antes
 de propor mudanças na página pra não desfazer decisões já validadas.
 
+### Consentimento de cookies (LGPD) — 2026-09-03
+Meta Pixel, GA4 e Microsoft Clarity **não carregam mais incondicionalmente**.
+Dependem de consentimento explícito do visitante, salvo em `localStorage`
+(chave `cookie_consent`, valores `"granted"`/`"denied"`):
+- `src/lib/consent.ts` — `getConsent()` / `setConsent()`.
+- `src/lib/tracking.ts` — `loadTrackingScripts()` injeta os 3 scripts via
+  `document.createElement` (idempotente — chamar de novo não duplica).
+- `src/components/CookieConsentBanner.tsx` — barra fixa no rodapé, só na
+  primeira visita (`getConsent() === null`). Botões "Aceitar"/"Recusar"
+  com o mesmo peso visual, nenhum pré-marcado. Ao aceitar, chama
+  `loadTrackingScripts()`.
+- `src/routes/__root.tsx` — `RootComponent` tem um `useEffect` que chama
+  `loadTrackingScripts()` automaticamente se `getConsent() === "granted"`
+  (visitante que já aceitou numa visita anterior).
+- **Qualquer nova tag de rastreamento** (novo pixel, ferramenta de
+  analytics, etc.) deve entrar dentro de `loadTrackingScripts()`, nunca
+  direto no `<head>` estático de `__root.tsx` — senão volta a carregar
+  sem consentimento.
+- Nota de UX conhecida: a barra de cookies (`z-[60]`, fixa no rodapé) e a
+  barra de compra sticky mobile (`z-50`, também fixa no rodapé) podem
+  ocupar o mesmo espaço se o visitante rolar a página antes de decidir
+  sobre os cookies. Não tratado ainda — a barra de cookies tem prioridade
+  visual (z-index maior) por ser requisito legal.
+
 ### Regras que não podem ser quebradas
 - **Nunca invente depoimentos, estatísticas, provas sociais ou senso de
   urgência falso** (contador regressivo fake, "vagas limitadas" fake,
