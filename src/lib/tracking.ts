@@ -7,6 +7,9 @@ export const CHECKOUT_URL = "https://pay.hotmart.com/B107451355O";
 // Meta Pixel: insira o ID quando disponível (ex.: "123456789012345").
 export const META_PIXEL_ID = "1075669388414807";
 
+// Google Analytics 4 — Measurement ID (prefixo "G-").
+export const GA4_MEASUREMENT_ID = "G-SJCZ6TFCQT";
+
 type PixelEvent =
   | "PageView"
   | "ViewContent"

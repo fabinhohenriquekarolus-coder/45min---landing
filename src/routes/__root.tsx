@@ -11,7 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { META_PIXEL_ID } from "../lib/tracking";
+import { META_PIXEL_ID, GA4_MEASUREMENT_ID } from "../lib/tracking";
 
 function NotFoundComponent() {
   return (
@@ -136,6 +136,22 @@ function RootShell({ children }: { children: ReactNode }) {
             src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
           />
         </noscript>
+
+        {/* Google tag (gtag.js) — GA4 */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA4_MEASUREMENT_ID}');
+            `,
+          }}
+        />
       </head>
       <body>
         {children}
