@@ -10,6 +10,9 @@ export const META_PIXEL_ID = "1075669388414807";
 // Google Analytics 4 — Measurement ID (prefixo "G-").
 export const GA4_MEASUREMENT_ID = "G-SJCZ6TFCQT";
 
+// Microsoft Clarity — Project ID.
+export const CLARITY_PROJECT_ID = "ycriwyqmt3";
+
 type PixelEvent =
   | "PageView"
   | "ViewContent"

@@ -11,7 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { META_PIXEL_ID, GA4_MEASUREMENT_ID } from "../lib/tracking";
+import { META_PIXEL_ID, GA4_MEASUREMENT_ID, CLARITY_PROJECT_ID } from "../lib/tracking";
 
 function NotFoundComponent() {
   return (
@@ -149,6 +149,20 @@ function RootShell({ children }: { children: ReactNode }) {
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', '${GA4_MEASUREMENT_ID}');
+            `,
+          }}
+        />
+
+        {/* Microsoft Clarity */}
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "${CLARITY_PROJECT_ID}");
             `,
           }}
         />
