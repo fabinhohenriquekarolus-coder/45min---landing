@@ -559,6 +559,11 @@ function Landing() {
           <Check className="h-3.5 w-3.5 text-primary" />
           Do Zero ao Primeiro Produto com IA • Método Produto em 45 Minutos
         </div>
+
+        <p className="mt-4 text-center text-xs text-muted-foreground">
+          Ao se cadastrar você está concordando com nossos Termos de Uso e Política de
+          Privacidade.
+        </p>
       </Section>
 
       {/* BARRA FIXA MOBILE */}
